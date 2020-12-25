@@ -6,12 +6,16 @@ import { Tri } from './tri.model';
   providedIn: 'root'
 })
 export class DataService {
- apiUrl = 'https://6268bbb4c4d2.ngrok.io/tri';
+ apiUrl = 'https://1305a43e4de0.ngrok.io'; // j'ai fait un tunnel vers localhost:3007 avec ngrok
 
   constructor(private _http: HttpClient) { }
 
   getTri() {
 
-    return this._http.get<Tri[]>(this.apiUrl);
+    return this._http.get<Tri[]>(this.apiUrl+"/tri");
+  }
+
+  postTri(data) {
+      return this._http.post(this.apiUrl+"/trinumber",data);
   }
 }
