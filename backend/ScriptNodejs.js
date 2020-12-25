@@ -66,52 +66,56 @@ tab[2]=req.body.number3;
 tab[3]=req.body.number4;
 tab[4]=req.body.number5;
 
-console.log("tableau is "+tab);
 
-  function sortAsc(tabtri){
-for(var i = 0; i < tabtri.length; i++){
+  function sortAsc(tab){
+for(var i = 0; i < tab.length; i++){
   //stocker l'index de l'élément minimum
   var min = i;
-  for(var j = i+1; j < tabtri.length; j++){
-    if(tabtri[j] < tabtri[min]){
+  for(var j = i+1; j < tab.length; j++){
+    if(tab[j] < tab[min]){
      // mettre à jour l'index de l'élément minimum
      min = j;
     }
   }
-  var tmp = tabtri[i];
-  tabtri[i] = tabtri[min];
-  tabtri[min] = tmp;
+  var tmp = tab[i];
+  tab[i] = tab[min];
+  tab[min] = tmp;
 }
-return tabtri;
+return tab;
 };
 
-function sortDesc(tabtri){
-for(var i = 0; i < tabtri.length; i++){
+function sortDesc(tab){
+for(var i = 0; i < tab.length; i++){
 //stocker l'index de l'élément minimum
 var max = i;
-for(var j = i+1; j < tabtri.length; j++){
-  if(tabtri[j] > tabtri[max]){
+for(var j = i+1; j < tab.length; j++){
+  if(tab[j] > tab[max]){
    // mettre à jour l'index de l'élément minimum
    max = j;
   }
 }
-var tmp = tabtri[i];
-tabtri[i] = tabtri[max];
-tabtri[max] = tmp;
+var tmp = tab[i];
+tab[i] = tab[max];
+tab[max] = tmp;
 }
-return tabtri;
+return tab;
 };
-if(ordre==1) {
-tabtri=sortAsc(tab);
-}else{
-tabtri=sortDesc(tab);
-}
-var query1 = "INSERT INTO `tech`(`liste`, `ordre`, `listetri`) VALUES (?,?,?)";
 
-connection.query(query1,[JSON.stringify(tab),req.body.ordre,JSON.stringify(tabtri)],function(error,results){
-if (error) { res.send(JSON.stringify(error)) }
-else{ res.send(JSON.stringify(tabtri)) }
-})
+if(ordre==1) {
+  var query1 = "INSERT INTO `tech`(`liste`, `ordre`, `listetri`) VALUES (?,?,?)";
+connection.query(query1,[JSON.stringify(tab),req.body.ordre,JSON.stringify(sortAsc(tab))],function(error,results){
+  if (error) { res.send(JSON.stringify(error)) }
+  else{ res.send(JSON.stringify(tab)) }
+  })
+}else{
+  var query1 = "INSERT INTO `tech`(`liste`, `ordre`, `listetri`) VALUES (?,?,?)";
+connection.query(query1,[JSON.stringify(tab),req.body.ordre,JSON.stringify(sortDesc(tab))],function(error,results){
+  if (error) { res.send(JSON.stringify(error)) }
+  else{ res.send(JSON.stringify(tab)) }
+  })
+}
+
+
 
 
 });

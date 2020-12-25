@@ -6,7 +6,7 @@
   <!-- Resources -->
 
 
-<h1 class="text-center"> Focntion du tri </h1>
+<h1 class="text-center"> Focntion de tri </h1>
 <br>
 <br>
 
@@ -22,10 +22,10 @@
     </ul>
   </div>
   <div class="form-group col-md-4 mb-5">
-      <label for="ordre">Choisissez ordre du tri</label> <br>
+      <label for="ordre">Choisissez ordre de tri</label> <br>
  <select  name="ordre" placeholder="Ordre" class="form-control"  ngModel required>
    <option value="1" >Croissant</option>
-   <option value="2" >Decroissant</option>
+   <option value="2" >Décroissant</option>
  </select>
  </div>
 
@@ -39,13 +39,13 @@
 <mat-divider></mat-divider>
     </form>
 
-    <label for="result"> Resultats du tri est : </label>
+    <label for="result"> Resultats de tri est : </label>
     <br>
     <p>  {{tri$}} </p>
 
 <br><br>
 <div class="form-group col-md-8 mb-8">
-<h2 class="text-left"> Historique des tri </h2>
+<h2 class="text-left"> Historique </h2>
 
     <div *ngFor='let tri of tris$' >
       <p> <b>  Avent : </b> {{tri.liste}} | <b> Apres : </b> {{tri.listetri}} </p>
